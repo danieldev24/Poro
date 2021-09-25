@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.apps.adrcotfas.goodtime">
+    package="com.apps.daniel.poro">
 
     <!-- Used by the UltimateRingtonePicker to allow adding custom ringtones -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:name="com.apps.adrcotfas.goodtime.bl.GoodtimeApplication"
+        android:name="com.apps.daniel.poro.bl.MainApplication"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +34,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,InnerclassSeparator">
         <activity
-            android:name="com.apps.adrcotfas.goodtime.main.TimerActivity"
+            android:name="com.apps.daniel.poro.main.TimerActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:showOnLockScreen="true"
@@ -45,14 +45,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="com.apps.daniel.poro.settings.SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName=".main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
 
         <activity
-            android:name=".about.AboutActivity"
+            android:name="com.apps.daniel.poro.about.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName=".main.TimerActivity"
+            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity"
             android:theme="@style/AboutTheme" />
 
         <activity
@@ -63,28 +63,28 @@
             android:theme="@style/AboutTheme" />
 
         <activity
-            android:name=".statistics.main.StatisticsActivity"
+            android:name="com.apps.daniel.poro.statistics.main.StatisticsActivity"
             android:label="@string/statistics"
-            android:parentActivityName=".main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
 
         <activity
-            android:name=".labels.AddEditLabelActivity"
+            android:name="com.apps.daniel.poro.labels.AddEditLabelActivity"
             android:label="@string/label_dialog_edit"
-            android:parentActivityName=".main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
 
         <activity
-            android:name=".main.MainIntroActivity"
-            android:parentActivityName=".main.TimerActivity"
+            android:name="com.apps.daniel.poro.main.MainIntroActivity"
+            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity"
             android:theme="@style/Theme.Intro" />
 
         <service
-            android:name="com.apps.adrcotfas.goodtime.bl.TimerService"
+            android:name="com.apps.daniel.poro.bl.TimerService"
             android:enabled="true"
             android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.apps.adrcotfas.goodtime"
+            android:authorities="com.apps.daniel.poro"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -93,7 +93,7 @@
         </provider>
 
         <receiver
-            android:name=".settings.reminders.BootReceiver"
+            android:name="com.apps.daniel.poro.settings.reminders.BootReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -101,7 +101,7 @@
         </receiver>
 
         <receiver
-            android:name=".settings.reminders.ReminderReceiver"
+            android:name="com.apps.daniel.poro.settings.reminders.ReminderReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="buddy.reminder_action" />

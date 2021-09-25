@@ -64,12 +64,12 @@
 ##---------------End: proguard configuration for EventBus  ---------
 
 # For some reason, obfuscating this would render it invisible (Unable to instantiate fragment)
--keep class com.apps.adrcotfas.goodtime.settings.DurationsSettingsFragment { *; }
+-keep class com.apps.daniel.poro.settings.DurationsSettingsFragment { *; }
 
 # Models
--keep class com.apps.adrcotfas.goodtime.database.Label { *; }
--keep class com.apps.adrcotfas.goodtime.database.Profile { *; }
--keep class com.apps.adrcotfas.goodtime.database.Session { *; }
+-keep class com.apps.daniel.poro.database.Label { *; }
+-keep class com.apps.daniel.poro.database.Profile { *; }
+-keep class com.apps.daniel.poro.database.Session { *; }
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
