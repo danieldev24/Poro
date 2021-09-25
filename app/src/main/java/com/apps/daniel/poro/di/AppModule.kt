@@ -4,9 +4,9 @@ import android.content.Context
 import com.apps.daniel.poro.bl.CurrentSessionManager
 import com.apps.daniel.poro.bl.NotificationHelper
 import com.apps.daniel.poro.bl.RingtoneAndVibrationPlayer
-import com.apps.daniel.poro.database.AppDatabase
-import com.apps.daniel.poro.settings.PreferenceHelper
-import com.apps.daniel.poro.settings.reminders.ReminderHelper
+import com.apps.daniel.poro.domain.AppDatabase
+import com.apps.daniel.poro.presentation.settings.PreferenceHelper
+import com.apps.daniel.poro.presentation.settings.reminders.ReminderHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

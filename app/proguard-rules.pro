@@ -64,12 +64,12 @@
 ##---------------End: proguard configuration for EventBus  ---------
 
 # For some reason, obfuscating this would render it invisible (Unable to instantiate fragment)
--keep class com.apps.daniel.poro.settings.DurationsSettingsFragment { *; }
+-keep class com.apps.daniel.poro.presentation.settings.DurationsSettingsFragment { *; }
 
 # Models
--keep class com.apps.daniel.poro.database.Label { *; }
--keep class com.apps.daniel.poro.database.Profile { *; }
--keep class com.apps.daniel.poro.database.Session { *; }
+-keep class com.apps.daniel.poro.domain.models.Label { *; }
+-keep class com.apps.daniel.poro.domain.models.Profile { *; }
+-keep class com.apps.daniel.poro.domain.models.Session { *; }
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer

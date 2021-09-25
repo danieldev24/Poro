@@ -1,10 +1,8 @@
-
 package com.apps.daniel.poro.bl
 
 import android.content.ContextWrapper
 import javax.inject.Inject
-import com.apps.daniel.poro.settings.PreferenceHelper
-import com.apps.daniel.poro.bl.CurrentSessionManager.AppCountDownTimer
+import com.apps.daniel.poro.presentation.settings.PreferenceHelper
 import android.content.IntentFilter
 import com.apps.daniel.poro.util.Constants.ACTION
 import android.app.AlarmManager
@@ -22,24 +20,26 @@ import java.lang.IllegalArgumentException
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
-/**
- * This class manages and modifies the mutable members of [CurrentSession]
- * The duration is updated using an [AppCountDownTimer]. Events coming from other layers will
- * trigger an update of the [CurrentSession]'s [TimerState] and [SessionType].
- */
-class CurrentSessionManager @Inject constructor(@ApplicationContext val context: Context, val preferenceHelper: PreferenceHelper) :
+class CurrentSessionManager @Inject constructor(
+    @ApplicationContext val context: Context,
+    val preferenceHelper: PreferenceHelper
+) :
     ContextWrapper(context) {
 
-    var currentSession = CurrentSession(TimeUnit.MINUTES.toMillis(preferenceHelper.getSessionDuration(SessionType.WORK)), preferenceHelper.currentSessionLabel.title)
+    var currentSession = CurrentSession(
+        TimeUnit.MINUTES.toMillis(preferenceHelper.getSessionDuration(SessionType.WORK)),
+        preferenceHelper.currentSessionLabel.title
+    )
 
     private lateinit var timer: AppCountDownTimer
-    private var remaining : Long = 0 // [ms]
+    private var remaining: Long = 0 // [ms]
 
-    private val alarmReceiver: AlarmReceiver = AlarmReceiver(object : AlarmReceiver.OnAlarmReceivedListener{
-        override fun onAlarmReceived() {
-            currentSession.setTimerState(TimerState.INACTIVE)
-        }
-    })
+    private val alarmReceiver: AlarmReceiver =
+        AlarmReceiver(object : AlarmReceiver.OnAlarmReceivedListener {
+            override fun onAlarmReceived() {
+                currentSession.setTimerState(TimerState.INACTIVE)
+            }
+        })
 
     private var sessionDuration: Long = 0
 
@@ -51,7 +51,7 @@ class CurrentSessionManager @Inject constructor(@ApplicationContext val context:
         currentSession.setSessionType(sessionType)
         currentSession.setDuration(sessionDuration)
         scheduleAlarm(
-            sessionType, sessionDuration, preferenceHelper.oneMinuteBeforeNotificationEnabled()!!
+            sessionType, sessionDuration, preferenceHelper.oneMinuteBeforeNotificationEnabled()
                     && sessionDuration > TimeUnit.MINUTES.toMillis(1)
         )
         timer = AppCountDownTimer(sessionDuration)
@@ -65,7 +65,7 @@ class CurrentSessionManager @Inject constructor(@ApplicationContext val context:
                 scheduleAlarm(
                     currentSession.sessionType.value,
                     remaining,
-                    preferenceHelper.oneMinuteBeforeNotificationEnabled()!!
+                    preferenceHelper.oneMinuteBeforeNotificationEnabled()
                             && remaining > TimeUnit.MINUTES.toMillis(1)
                 )
                 timer.start()
@@ -190,7 +190,7 @@ class CurrentSessionManager @Inject constructor(@ApplicationContext val context:
             scheduleAlarm(
                 currentSession.sessionType.value,
                 remaining,
-                preferenceHelper.oneMinuteBeforeNotificationEnabled()!!
+                preferenceHelper.oneMinuteBeforeNotificationEnabled()
                         && remaining > TimeUnit.MINUTES.toMillis(1)
             )
             timer.start()
@@ -201,28 +201,19 @@ class CurrentSessionManager @Inject constructor(@ApplicationContext val context:
     }
 
     private inner class AppCountDownTimer
-    /**
-     * @param millisInFuture    The number of millis in the future from the call
-     * to [.start] until the countdown is done and [.onFinish]
-     * is called.
-     */(millisInFuture: Long) : CountDownTimer(millisInFuture, 1000) {
+        (millisInFuture: Long) : CountDownTimer(millisInFuture, 1000) {
 
-        private val TAG = AppCountDownTimer::class.java.simpleName
+        private val tAG = AppCountDownTimer::class.java.simpleName
 
-        /**
-         * This is useful only when the screen is turned on. It seems that onTick is not called for every tick if the
-         * phone is locked and the app runs in the background.
-         * I found this the hard way when using the session duration(which is set here) in saving to statistics.
-         */
         override fun onTick(millisUntilFinished: Long) {
-            Log.v(TAG, "is Ticking: $millisUntilFinished millis remaining.")
+            Log.v(tAG, "is Ticking: $millisUntilFinished millis remaining.")
             currentSession.setDuration(millisUntilFinished)
             remaining = millisUntilFinished
             EventBus.getDefault().post(UpdateTimerProgressEvent())
         }
 
         override fun onFinish() {
-            Log.v(TAG, "is finished.")
+            Log.v(tAG, "is finished.")
             remaining = 0
         }
     }

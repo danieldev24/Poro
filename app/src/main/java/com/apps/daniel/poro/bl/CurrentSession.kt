@@ -4,10 +4,6 @@ package com.apps.daniel.poro.bl
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 
-/**
- * Stores the session remaining duration, type and timer state.
- * @see MainApplication
- */
 class CurrentSession(durationInput: Long, label: String) {
 
     private val _duration = MutableLiveData<Long>()

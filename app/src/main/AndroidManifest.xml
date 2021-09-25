@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:name="com.apps.daniel.poro.bl.MainApplication"
+        android:name="com.apps.daniel.poro.MainApplication"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +34,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,InnerclassSeparator">
         <activity
-            android:name="com.apps.daniel.poro.main.TimerActivity"
+            android:name="com.apps.daniel.poro.presentation.timer.TimerActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:showOnLockScreen="true"
@@ -45,14 +45,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.apps.daniel.poro.settings.SettingsActivity"
+            android:name="com.apps.daniel.poro.presentation.settings.SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
 
         <activity
-            android:name="com.apps.daniel.poro.about.AboutActivity"
+            android:name="com.apps.daniel.poro.presentation.about.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity"
+            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity"
             android:theme="@style/AboutTheme" />
 
         <activity
@@ -63,18 +63,18 @@
             android:theme="@style/AboutTheme" />
 
         <activity
-            android:name="com.apps.daniel.poro.statistics.main.StatisticsActivity"
+            android:name="com.apps.daniel.poro.presentation.statistics.main.StatisticsActivity"
             android:label="@string/statistics"
-            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
 
         <activity
-            android:name="com.apps.daniel.poro.labels.AddEditLabelActivity"
+            android:name="com.apps.daniel.poro.presentation.labels.AddEditLabelActivity"
             android:label="@string/label_dialog_edit"
-            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity" />
+            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
 
         <activity
-            android:name="com.apps.daniel.poro.main.MainIntroActivity"
-            android:parentActivityName="com.apps.daniel.poro.main.TimerActivity"
+            android:name="com.apps.daniel.poro.presentation.intro.MainIntroActivity"
+            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity"
             android:theme="@style/Theme.Intro" />
 
         <service
@@ -93,7 +93,7 @@
         </provider>
 
         <receiver
-            android:name="com.apps.daniel.poro.settings.reminders.BootReceiver"
+            android:name="com.apps.daniel.poro.presentation.settings.reminders.BootReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -101,7 +101,7 @@
         </receiver>
 
         <receiver
-            android:name="com.apps.daniel.poro.settings.reminders.ReminderReceiver"
+            android:name="com.apps.daniel.poro.presentation.settings.reminders.ReminderReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="buddy.reminder_action" />

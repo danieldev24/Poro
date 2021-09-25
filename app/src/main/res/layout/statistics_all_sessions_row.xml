@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.apps.daniel.poro.database.Session" />
+            type="com.apps.daniel.poro.domain.models.Session" />
         <import type="android.view.View" />
     </data>
 

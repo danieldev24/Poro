@@ -1,22 +1,10 @@
-/*
- * Copyright 2016-2021 Adrian Cotfas
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
- * either express or implied. See the License for the specific language governing permissions and limitations under the License.
- */
 package com.apps.daniel.poro.bl
 
-import com.apps.daniel.poro.database.AppDatabase.Companion.getDatabase
+import com.apps.daniel.poro.domain.AppDatabase.Companion.getDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.LifecycleService
 import javax.inject.Inject
-import com.apps.daniel.poro.settings.PreferenceHelper
+import com.apps.daniel.poro.presentation.settings.PreferenceHelper
 import org.greenrobot.eventbus.EventBus
 import kotlin.jvm.Synchronized
 import android.content.Intent
@@ -34,11 +22,11 @@ import androidx.annotation.RequiresApi
 import android.os.Build
 import android.app.NotificationManager
 import android.net.wifi.WifiManager
-import com.apps.daniel.poro.main.TimerActivity
+import com.apps.daniel.poro.presentation.timer.TimerActivity
 import android.annotation.TargetApi
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
-import com.apps.daniel.poro.database.Session
+import com.apps.daniel.poro.domain.models.Session
 import com.apps.daniel.poro.util.Constants
 import com.apps.daniel.poro.util.toFormattedTime
 import com.apps.daniel.poro.util.toLocalTime

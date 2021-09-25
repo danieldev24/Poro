@@ -1,4 +1,3 @@
-
 package com.apps.daniel.poro.bl
 
 import android.content.Context
@@ -9,8 +8,8 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Vibrator
-import com.apps.daniel.poro.settings.PreferenceHelper
-import com.apps.daniel.poro.settings.toRingtone
+import com.apps.daniel.poro.presentation.settings.PreferenceHelper
+import com.apps.daniel.poro.presentation.settings.toRingtone
 import com.apps.daniel.poro.util.VibrationPatterns
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.IOException
@@ -33,27 +32,29 @@ class RingtoneAndVibrationPlayer @Inject constructor(
                     if (sessionType == SessionType.WORK) preferenceHelper.getNotificationSoundWorkFinished()
                     else preferenceHelper.getNotificationSoundBreakFinished()
 
-                val uri = Uri.parse(toRingtone(ringtoneRaw!!).uri)
+                val uri = Uri.parse(ringtoneRaw?.let { toRingtone(it).uri })
 
                 mediaPlayer = MediaPlayer()
-                mediaPlayer!!.setDataSource(context, uri)
-                audioManager.mode = AudioManager.MODE_NORMAL
-                val attributes = Builder()
-                    .setUsage(if (preferenceHelper.isPriorityAlarm()) USAGE_ALARM else USAGE_NOTIFICATION)
-                    .build()
-                mediaPlayer!!.setAudioAttributes(attributes)
-                mediaPlayer!!.isLooping = insistent
-                mediaPlayer!!.prepareAsync()
-                mediaPlayer!!.setOnPreparedListener {
-                    // TODO: check duration of custom ringtones which may be much longer than notification sounds.
-                    // If it's n seconds long and we're in continuous mode,
-                    // schedule a stop after x seconds.
-                    mediaPlayer!!.start()
+                mediaPlayer?.let {mp->
+                    mp.setDataSource(context, uri)
+                    audioManager.mode = AudioManager.MODE_NORMAL
+                    val attributes = Builder()
+                        .setUsage(if (preferenceHelper.isPriorityAlarm()) USAGE_ALARM else USAGE_NOTIFICATION)
+                        .build()
+                    mp.setAudioAttributes(attributes)
+                    mp.isLooping = insistent
+                    mp.prepareAsync()
+                    mp.setOnPreparedListener {
+                        // TODO: check duration of custom ringtones which may be much longer than notification sounds.
+                        // If it's n seconds long and we're in continuous mode,
+                        // schedule a stop after x seconds.
+                        it.start()
+                    }
                 }
             }
             val vibrationType = preferenceHelper.getVibrationType()
             if (vibrationType > 0) {
-                vibrator!!.vibrate(
+                vibrator?.vibrate(
                     VibrationPatterns.LIST[vibrationType],
                     if (insistent) 2 else -1
                 )
@@ -66,13 +67,13 @@ class RingtoneAndVibrationPlayer @Inject constructor(
     }
 
     fun stop() {
-        if (mediaPlayer != null && vibrator != null) {
-            mediaPlayer!!.reset()
-            mediaPlayer!!.release()
-            mediaPlayer = null
-        }
-        if (vibrator != null) {
-            vibrator!!.cancel()
+        mediaPlayer?.let { mp->
+            vibrator?.let { vib->
+                mp.reset()
+                mp.release()
+                mediaPlayer = null
+                vib.cancel()
+            }
         }
     }
 

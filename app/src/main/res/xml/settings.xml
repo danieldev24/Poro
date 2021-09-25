@@ -11,7 +11,7 @@
         android:shouldDisableView="true"
         app:isPreferenceVisible="false" />
 
-    <com.apps.daniel.poro.settings.DayOfWeekPreference
+    <com.apps.daniel.poro.presentation.settings.DayOfWeekPreference
         app:key="pref_reminder_days"
         app:layout="@layout/preference_days_of_week"
         app:allowDividerAbove="false"
