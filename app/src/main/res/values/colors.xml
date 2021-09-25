@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="teal200">#80CBC4</color>
+    <color name="teal300">#4DB6AC</color>
+
+    <color name="grey50">#FAFAFA</color>
+    <color name="grey200">#EEEEEE</color>
+    <color name="grey500">#9E9E9E</color>
+    <color name="grey800">#424242</color>
+    <color name="grey900">#212121</color>
+    <color name="grey1000">#141414</color>
+    <color name="grey1200">#0A0A0A</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="transparent_dark">#1AFFFFFF</color>
+    <color name="transparent">#1effffff</color>
+    <color name="true_transparent">#00FFFFFF</color>
+
+    <integer-array name="lightPalette">
+        <item>@color/white</item>
+        <item>@color/light_blue_200</item>
+        <item>@color/green_200</item>
+        <item>@color/yellow_200</item>
+        <item>@color/orange_200</item>
+        <item>@color/red_200</item>
+        <item>@color/pink_200</item>
+        <item>@color/purple_200</item>
+    </integer-array>
+
+    <color name="light_blue_200">#81D4FA</color>
+    <color name="green_200">#A5D6A7</color>
+    <color name="yellow_200">#FFF59D</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="red_200">#ef9a9a</color>
+    <color name="pink_200">#F48FB1</color>
+    <color name="purple_200">#CE93D8</color>
+
+    <color name="gold">#CFB53B</color>
+
+</resources>
