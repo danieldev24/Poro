@@ -163,10 +163,10 @@
     <style name="DialogTheme" parent="Theme.MaterialComponents.Dialog" >
         <item name="android:backgroundTint" tools:ignore="NewApi">?attr/alertDialogColor</item>
         <item name="dialogCornerRadius">16dp</item>
-        <item name="colorPrimary">@color/teal200</item>
-        <item name="colorPrimaryVariant">@color/teal300</item>
-        <item name="colorSecondary">@color/teal200</item>
-        <item name="colorSecondaryVariant">@color/teal300</item>
+        <item name="colorPrimary">@color/chartreuse</item>
+        <item name="colorPrimaryVariant">@color/lethal_lime</item>
+        <item name="colorSecondary">@color/chartreuse</item>
+        <item name="colorSecondaryVariant">@color/lethal_lime</item>
         <item name="buttonStyle">@style/Button</item>
         <item name="materialButtonStyle">@style/Button</item>
         <item name="android:buttonBarButtonStyle">@style/Button</item>
@@ -208,7 +208,7 @@
     <style name="ThemeOverlay.App.Button" parent="">
         <item name="android:textAllCaps">false</item>
         <item name="textAllCaps">false</item>
-        <item name="colorPrimary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
     </style>
 
     <style name="ShapeAppearance.SmallComponent"
@@ -218,8 +218,8 @@
     </style>
 
     <style name="ThemeOverlay.MaterialTimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
-        <item name="colorPrimary">@color/teal200</item>
-        <item name="colorSecondary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
+        <item name="colorSecondary">@color/chartreuse</item>
         <item name="colorSurface">@color/grey1000</item>
         <item name="colorOnSurface">@color/grey200</item>
         <item name="alertDialogStyle">@style/MaterialAlertDialog</item>
@@ -231,8 +231,8 @@
     </style>
 
     <style name="MaterialCalendarTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
-        <item name="colorPrimary">@color/teal200</item>
-        <item name="colorSecondary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
+        <item name="colorSecondary">@color/chartreuse</item>
         <item name="colorSurface">@color/grey1000</item>
         <item name="colorOnSurface">@color/grey200</item>
         <item name="alertDialogStyle">@style/MaterialAlertDialog</item>
@@ -268,11 +268,11 @@
     </style>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar" >
-        <item name="colorPrimary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorSecondary">@color/teal200</item>
-        <item name="colorSecondaryVariant">@color/teal300</item>
+        <item name="colorSecondary">@color/chartreuse</item>
+        <item name="colorSecondaryVariant">@color/lethal_lime</item>
         <item name="colorOnSecondary">@color/white</item>
 
         <item name="android:colorBackground">@color/grey1000</item>
@@ -309,10 +309,10 @@
     </style>
 
     <style name="AppThemeDark" parent="AppTheme" >
-        <item name="colorPrimary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
         <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorSecondary">@color/teal200</item>
-        <item name="colorSecondaryVariant">@color/teal300</item>
+        <item name="colorSecondary">@color/chartreuse</item>
+        <item name="colorSecondaryVariant">@color/lethal_lime</item>
         <item name="colorOnSecondary">@color/grey900</item>
 
         <item name="android:colorBackground">@color/grey1000</item>
@@ -331,7 +331,7 @@
     </style>
 
     <style name="BottomDialogStyle" parent="@style/Theme.MaterialComponents.BottomSheetDialog" >
-        <item name="colorPrimary">@color/teal200</item>
+        <item name="colorPrimary">@color/chartreuse</item>
         <item name="bottomSheetStyle">@style/RoundedBottomSheetStyle</item>
         <item name="android:backgroundTint" tools:targetApi="lollipop">?attr/alertDialogColor</item>
     </style>

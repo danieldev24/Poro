@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="teal200">#80CBC4</color>
-    <color name="teal300">#4DB6AC</color>
+    <color name="chartreuse">#7CFF01</color>
+    <color name="emerald_wave">#4DB6AC</color>
 
     <color name="grey50">#FAFAFA</color>
     <color name="grey200">#EEEEEE</color>
@@ -21,14 +21,22 @@
 
     <integer-array name="lightPalette">
         <item>@color/white</item>
-        <item>@color/light_blue_200</item>
-        <item>@color/green_200</item>
-        <item>@color/yellow_200</item>
-        <item>@color/orange_200</item>
-        <item>@color/red_200</item>
-        <item>@color/pink_200</item>
-        <item>@color/purple_200</item>
+        <item>@color/turquoise_blue</item>
+        <item>@color/lethal_lime</item>
+        <item>@color/flat_yellow</item>
+        <item>@color/mandarin_sorbet</item>
+        <item>@color/red_rose</item>
+        <item>@color/pink_fang</item>
+        <item>@color/purple</item>
     </integer-array>
+
+    <color name="turquoise_blue">#01fff4</color>
+    <color name="lethal_lime">#87ff16</color>
+    <color name="flat_yellow">#FFF205</color>
+    <color name="mandarin_sorbet">#ffb13f</color>
+    <color name="red_rose">#fe0000</color>
+    <color name="pink_fang">#FF1178</color>
+    <color name="purple">#E92EFB</color>
 
     <color name="light_blue_200">#81D4FA</color>
     <color name="green_200">#A5D6A7</color>

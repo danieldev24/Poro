@@ -2,29 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.apps.daniel.poro">
-
     <!-- Used by the UltimateRingtonePicker to allow adding custom ringtones -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- Used to enable and disable WiFi during work sessions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Used to enable and disable WiFi during work sessions -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <!-- Used to enable and disable sound during work sessions -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Used to enable and disable sound during work sessions -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- Used to wake the screen when a session is finished -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- Used on Android P and later for the timer foreground service -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Used to wake the screen when a session is finished -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Used on Android P and later for the timer foreground service -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <!-- For the option of removing the app from the battery optimization -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- For the option of removing the app from the battery optimization -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:name="com.apps.daniel.poro.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,51 +25,51 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,InnerclassSeparator">
         <activity
-            android:name="com.apps.daniel.poro.presentation.timer.TimerActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:showOnLockScreen="true"
-            android:theme="@style/AppTheme">
+            android:name=".presentation.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.apps.daniel.poro.presentation.settings.SettingsActivity"
-            android:label="@string/settings"
-            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
-
+            android:name=".presentation.timer.TimerActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:showOnLockScreen="true"
+            android:theme="@style/AppTheme">
+        </activity>
         <activity
-            android:name="com.apps.daniel.poro.presentation.about.AboutActivity"
+            android:name=".presentation.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".presentation.timer.TimerActivity" />
+        <activity
+            android:name=".presentation.about.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity"
+            android:parentActivityName=".presentation.timer.TimerActivity"
             android:theme="@style/AboutTheme" />
-
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/AboutTheme" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/AboutTheme" />
-
         <activity
-            android:name="com.apps.daniel.poro.presentation.statistics.main.StatisticsActivity"
+            android:name=".presentation.statistics.main.StatisticsActivity"
             android:label="@string/statistics"
-            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
-
+            android:parentActivityName=".presentation.timer.TimerActivity" />
         <activity
-            android:name="com.apps.daniel.poro.presentation.labels.AddEditLabelActivity"
+            android:name=".presentation.labels.AddEditLabelActivity"
             android:label="@string/label_dialog_edit"
-            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity" />
-
+            android:parentActivityName=".presentation.timer.TimerActivity" />
         <activity
-            android:name="com.apps.daniel.poro.presentation.intro.MainIntroActivity"
-            android:parentActivityName="com.apps.daniel.poro.presentation.timer.TimerActivity"
+            android:name=".presentation.intro.MainIntroActivity"
+            android:parentActivityName=".presentation.timer.TimerActivity"
             android:theme="@style/Theme.Intro" />
 
         <service
-            android:name="com.apps.daniel.poro.bl.TimerService"
+            android:name=".bl.TimerService"
             android:enabled="true"
             android:exported="false" />
 
@@ -93,15 +84,14 @@
         </provider>
 
         <receiver
-            android:name="com.apps.daniel.poro.presentation.settings.reminders.BootReceiver"
+            android:name=".presentation.settings.reminders.BootReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver
-            android:name="com.apps.daniel.poro.presentation.settings.reminders.ReminderReceiver"
+            android:name=".presentation.settings.reminders.ReminderReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="buddy.reminder_action" />

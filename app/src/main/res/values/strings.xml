@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:locale="en"
-    tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation" tools:locale="en">
     <string name="pref_break_duration">"Break duration"</string>
     <string name="pref_disable_sound_and_vibration">"Disable sound and vibration"</string>
     <string name="pref_dnd">"Do not disturb mode"</string>
@@ -179,6 +177,7 @@
     <string name="action_reset_counter">"This will reset today's finished sessions."</string>
     <string name="action_reset_counter_title">Reset?</string>
     <string name="tutorial_title">Tutorial</string>
+    <string name="status_icon" translatable="false">Status Icon</string>
     <string name="other_apps">Other apps</string>
     <string name="unlabeled">unlabeled</string>
     <string name="pref_show_label">View current label</string>
@@ -187,6 +186,6 @@
     <string name="pref_one_minute_left_notification_summary">Notify one minute before a work session ends</string>
     <string name="donate_message">Donate to support open-source and ad-free software!</string>
     <string name="donate">Donate</string>
-    <string name="message_premium">Enjoy the PRO version!</string>
+    <string name="message_premium" translatable="false">Enjoy the PRO version!</string>
 
 </resources>

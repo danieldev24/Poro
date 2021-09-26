@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
         android:endColor="@color/true_transparent"
-        android:startColor="@color/teal200"
+        android:startColor="@color/chartreuse"
         android:type="radial"
         android:gradientRadius="64"/>
 </shape>

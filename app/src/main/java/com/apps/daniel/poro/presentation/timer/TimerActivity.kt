@@ -1,6 +1,4 @@
-
 package com.apps.daniel.poro.presentation.timer
-
 
 import com.apps.daniel.poro.presentation.settings.reminders.ReminderHelper.Companion.removeNotification
 import com.apps.daniel.poro.util.BatteryUtils.Companion.isIgnoringBatteryOptimizations
@@ -68,6 +66,12 @@ import com.apps.daniel.poro.presentation.intro.MainIntroActivity
 import com.apps.daniel.poro.ui.ActivityWithBilling
 import com.apps.daniel.poro.util.*
 import com.apps.daniel.poro.util.Constants.ClearNotificationEvent
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
@@ -167,6 +171,7 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
             // If the condition is satisfied, "Rate this app" dialog will be shown
             RateThisApp.showRateDialogIfNeeded(this)
         }
+        Glide.with(this).asGif().load(R.drawable.star).into( binding.planet)
     }
 
     override fun showSnackBar(@StringRes resourceId: Int) {

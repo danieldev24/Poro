@@ -87,7 +87,7 @@ object ThemeHelper {
             return context.resources.getColor(R.color.white,null)
         }
         if (colorIndex == COLOR_INDEX_ALL_LABELS) {
-            return context.resources.getColor(R.color.teal200,null)
+            return context.resources.getColor(R.color.chartreuse,null)
         }
         if (colorIndex == COLOR_INDEX_BREAK) {
             return context.resources.getColor(R.color.grey500,null)
@@ -102,7 +102,7 @@ object ThemeHelper {
         if (color == context.resources.getColor(R.color.white,null)) {
             return COLOR_INDEX_UNLABELED
         }
-        if (color == context.resources.getColor(R.color.teal200,null)) {
+        if (color == context.resources.getColor(R.color.chartreuse,null)) {
             return COLOR_INDEX_ALL_LABELS
         }
         val colors = getPalette(context)
