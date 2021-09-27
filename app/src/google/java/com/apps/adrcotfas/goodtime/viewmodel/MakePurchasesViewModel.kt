@@ -10,14 +10,14 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
  * either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
-package com.apps.adrcotfas.goodtime.viewmodel
+package com.apps.daniel.poro.viewmodel
 
 import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.apps.adrcotfas.goodtime.BillingRepository
-import com.apps.adrcotfas.goodtime.BillingRepository.Companion.SKU_PREMIUM
+import com.apps.daniel.poro.BillingRepository
+import com.apps.daniel.poro.BillingRepository.Companion.SKU_PREMIUM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apps.adrcotfas.goodtime.di
+package com.apps.daniel.poro.di
 
 import android.content.Context
-import com.apps.adrcotfas.goodtime.BillingRepository
-import com.apps.adrcotfas.goodtime.BillingRepository.Companion.INAPP_SKUS
-import com.apps.adrcotfas.goodtime.BillingRepository.Companion.LICENCE_KEY
-import com.apps.adrcotfas.goodtime.billing.BillingDataSource
+import com.apps.daniel.poro.BillingRepository
+import com.apps.daniel.poro.BillingRepository.Companion.INAPP_SKUS
+import com.apps.daniel.poro.BillingRepository.Companion.LICENCE_KEY
+import com.apps.daniel.poro.billing.BillingDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

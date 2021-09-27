@@ -10,12 +10,12 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
  * either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
-package com.apps.adrcotfas.goodtime
+package com.apps.daniel.poro
 
 import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.LifecycleObserver
-import com.apps.adrcotfas.goodtime.billing.BillingDataSource
+import com.apps.daniel.poro.billing.BillingDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

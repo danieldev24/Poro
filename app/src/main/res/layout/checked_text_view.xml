@@ -6,6 +6,7 @@
     android:layout_height="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
+    android:textColor="@color/white"
     android:drawableStart="?android:attr/listChoiceIndicatorSingle"
     android:paddingStart="?android:attr/listPreferredItemPaddingLeft"
     android:paddingEnd="?android:attr/listPreferredItemPaddingRight"

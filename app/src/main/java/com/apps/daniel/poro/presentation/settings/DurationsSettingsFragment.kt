@@ -46,6 +46,11 @@ class DurationsSettingsFragment : PreferenceFragmentCompat(), ProfileChangeListe
         return view
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        addPreferencesFromResource(R.xml.settings_durations)
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_durations, rootKey)
         viewModel.profiles.observe(this, { profiles: List<Profile> ->

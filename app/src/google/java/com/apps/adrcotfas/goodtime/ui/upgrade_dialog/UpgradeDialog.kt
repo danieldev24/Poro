@@ -11,7 +11,7 @@
  * either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-package com.apps.adrcotfas.goodtime.ui.upgrade_dialog
+package com.apps.daniel.poro.ui.upgrade_dialog
 
 import android.app.Dialog
 import android.os.Bundle
@@ -22,10 +22,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.apps.adrcotfas.goodtime.R
-import com.apps.adrcotfas.goodtime.databinding.DialogUpgradeBinding
-import com.apps.adrcotfas.goodtime.util.showOnce
-import com.apps.adrcotfas.goodtime.viewmodel.MakePurchasesViewModel
+import com.apps.daniel.poro.R
+import com.apps.daniel.poro.databinding.DialogUpgradeBinding
+import com.apps.daniel.poro.util.showOnce
+import com.apps.daniel.poro.viewmodel.MakePurchasesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

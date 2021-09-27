@@ -16,12 +16,12 @@
 
             <TextView
                 android:id="@+id/header_label"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="@string/label_dialog_select"
-                android:textSize="21sp"
-                android:textAppearance="@android:style/TextAppearance.DialogWindowTitle"/>
+                android:textAppearance="@android:style/TextAppearance.DialogWindowTitle"
+                android:textSize="21sp" />
 
             <FrameLayout
                 android:id="@+id/edit_labels"

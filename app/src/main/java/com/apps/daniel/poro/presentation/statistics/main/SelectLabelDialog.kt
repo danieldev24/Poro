@@ -4,12 +4,10 @@ package com.apps.daniel.poro.presentation.statistics.main
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import com.apps.daniel.poro.presentation.settings.PreferenceHelper
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import android.view.LayoutInflater
-import com.apps.daniel.poro.R
 import android.content.Intent
 import com.apps.daniel.poro.presentation.labels.AddEditLabelActivity
 import com.apps.daniel.poro.presentation.labels.LabelsViewModel
@@ -17,6 +15,9 @@ import com.google.android.material.chip.Chip
 import android.content.res.ColorStateList
 import com.apps.daniel.poro.helpers.ThemeHelper
 import android.content.DialogInterface
+import android.content.res.Resources
+import android.graphics.Color
+import android.os.Build
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
@@ -28,17 +29,17 @@ import com.apps.daniel.poro.databinding.DialogSelectLabelBinding
 import com.apps.daniel.poro.presentation.settings.ProfilesViewModel
 import com.apps.daniel.poro.presentation.statistics.Utils
 import java.lang.ref.WeakReference
+import android.text.Spannable
+import android.text.style.ImageSpan
+import android.text.SpannableString
+import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
+import com.apps.daniel.poro.R
 
 @AndroidEntryPoint
 class SelectLabelDialog : DialogFragment() {
 
-    /**
-     * The callback used to indicate the user is done selecting the title
-     */
     interface OnLabelSelectedListener {
-        /**
-         * @param label     the label that was set
-         */
         fun onLabelSelected(label: Label)
     }
 
@@ -49,19 +50,12 @@ class SelectLabelDialog : DialogFragment() {
     private lateinit var mLabel: String
     private lateinit var mCallback: WeakReference<OnLabelSelectedListener>
 
-    /**
-     * The extended version of this dialog is used in the Statistics
-     * where it also contains "all" as a label.
-     */
     private var mIsExtendedVersion = false
 
-    /**
-     * The neutral button used to change the profile
-     */
     private var showProfileSelection = false
 
     private var mAlertDialog: AlertDialog? = null
-    @SuppressLint("ResourceType")
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val binding: DialogSelectLabelBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context),
@@ -95,8 +89,8 @@ class SelectLabelDialog : DialogFragment() {
                     )
                 )
                 chip.isCheckable = true
-                chip.chipIcon = resources.getDrawable(R.drawable.ic_check_off)
-                chip.checkedIcon = resources.getDrawable(R.drawable.ic_check)
+                chip.chipIcon = ResourcesCompat.getDrawable(resources,R.drawable.ic_check_off,null)
+                chip.checkedIcon = ResourcesCompat.getDrawable(resources,R.drawable.ic_check,null)
                 chip.id = i++
                 if (chip.text.toString() == mLabel) {
                     chip.isChecked = true
@@ -110,8 +104,8 @@ class SelectLabelDialog : DialogFragment() {
                 chip.chipBackgroundColor =
                     ColorStateList.valueOf(ThemeHelper.getColor(requireContext(), crt.colorId))
                 chip.isCheckable = true
-                chip.chipIcon = resources.getDrawable(R.drawable.ic_check_off)
-                chip.checkedIcon = resources.getDrawable(R.drawable.ic_check)
+                chip.chipIcon = ResourcesCompat.getDrawable(resources,R.drawable.ic_check_off,null)
+                chip.checkedIcon = ResourcesCompat.getDrawable(resources,R.drawable.ic_check,null)
                 chip.id = i++
                 if (crt.title == mLabel) {
                     chip.isChecked = true
@@ -150,61 +144,64 @@ class SelectLabelDialog : DialogFragment() {
                 null
             )
             mAlertDialog = builder.create()
-            mAlertDialog!!.setOnShowListener {
+            mAlertDialog?.let { alertDialog ->
+                alertDialog.setOnShowListener {
 
-                //TODO: Clean-up this mess
-                val neutral = mAlertDialog!!.getButton(DialogInterface.BUTTON_NEUTRAL)
-                neutral.setOnClickListener {
-                    val profilesViewModel : ProfilesViewModel by viewModels()
-                    val profilesLiveData = profilesViewModel.profiles
-                    profilesLiveData.observe(this@SelectLabelDialog, { profiles: List<Profile> ->
-                        mProfiles = profiles
-                        var profileIdx = 0
-                        val arrayAdapter = ArrayAdapter<String>(
-                            requireContext(),
-                            R.layout.checked_text_view
-                        )
-                        val pref25 =
-                            this@SelectLabelDialog.resources.getText(R.string.pref_profile_default)
-                                .toString()
-                        val pref52 =
-                            this@SelectLabelDialog.resources.getText(R.string.pref_profile_5217)
-                                .toString()
-                        val crtProfileName = preferenceHelper.profile
-                        if (crtProfileName == pref25) {
-                            profileIdx = 0
-                        } else if (crtProfileName == pref52) {
-                            profileIdx = 1
-                        }
-                        arrayAdapter.add(pref25)
-                        arrayAdapter.add(pref52)
-                        val predefinedProfileNum = arrayAdapter.count
-                        for (i in profiles.indices) {
-                            val p = profiles[i]
-                            arrayAdapter.add(p.name)
-                            if (crtProfileName == p.name) {
-                                profileIdx = i + predefinedProfileNum
+                    //TODO: Clean-up this mess
+                    val neutral = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL)
+                    neutral.setOnClickListener {
+                        val profilesViewModel : ProfilesViewModel by viewModels()
+                        val profilesLiveData = profilesViewModel.profiles
+                        profilesLiveData.observe(this@SelectLabelDialog, { profiles: List<Profile> ->
+                            mProfiles = profiles
+                            var profileIdx = 0
+                            val arrayAdapter = ArrayAdapter<SpannableString>(
+                                requireContext(),
+                                R.layout.checked_text_view
+                            )
+                            val pref25 =
+                                this@SelectLabelDialog.resources.getText(R.string.pref_profile_default)
+                                    .toString()
+                            val pref52 =
+                                this@SelectLabelDialog.resources.getText(R.string.pref_profile_5217)
+                                    .toString()
+                            val crtProfileName = preferenceHelper.profile
+                            if (crtProfileName == pref25) {
+                                profileIdx = 0
+                            } else if (crtProfileName == pref52) {
+                                profileIdx = 1
                             }
-                        }
-                        val profileDialogBuilder = AlertDialog.Builder(requireContext())
-                            .setTitle(this@SelectLabelDialog.resources.getString(R.string.Profile))
-                            .setSingleChoiceItems(
-                                arrayAdapter,
-                                if (preferenceHelper.isUnsavedProfileActive()) -1 else profileIdx
-                            ) { dialogInterface: DialogInterface, which: Int ->
-                                val selected = arrayAdapter.getItem(which)
-                                updateProfile(which)
-                                dialogInterface.dismiss()
-                                if (mAlertDialog != null) {
-                                    mAlertDialog!!.getButton(AlertDialog.BUTTON_NEUTRAL).text =
-                                        selected
+                            arrayAdapter.add(addIconToString(pref25))
+                            arrayAdapter.add(addIconToString(pref52))
+                            val predefinedProfileNum = arrayAdapter.count
+                            for (i in profiles.indices) {
+                                val p = profiles[i]
+                                arrayAdapter.add(addIconToString(p.name))
+                                if (crtProfileName == p.name) {
+                                    profileIdx = i + predefinedProfileNum
                                 }
                             }
-                            .setNegativeButton(android.R.string.cancel) { dialog1: DialogInterface, _: Int -> dialog1.dismiss() }
-                        profileDialogBuilder.show()
-                    })
+                            val profileDialogBuilder = AlertDialog.Builder(requireContext())
+                                .setTitle(this@SelectLabelDialog.resources.getString(R.string.Profile))
+                                .setSingleChoiceItems(
+                                    arrayAdapter,
+                                    if (preferenceHelper.isUnsavedProfileActive()) -1 else profileIdx
+                                ) { dialogInterface: DialogInterface, which: Int ->
+                                    val selected = arrayAdapter.getItem(which)
+                                    updateProfile(which)
+                                    dialogInterface.dismiss()
+                                    if (mAlertDialog != null) {
+                                        mAlertDialog!!.getButton(AlertDialog.BUTTON_NEUTRAL).text =
+                                            selected?.let { it1 -> removeIconToString(it1) }
+                                    }
+                                }
+                                .setNegativeButton(android.R.string.cancel) { dialog1: DialogInterface, _: Int -> dialog1.dismiss() }
+                            profileDialogBuilder.show()
+                        })
+                    }
                 }
             }
+
         } else {
             mAlertDialog = builder.create()
         }
@@ -224,10 +221,42 @@ class SelectLabelDialog : DialogFragment() {
                 preferenceHelper.setProfile52to17()
             }
             else -> {
-
                 preferenceHelper.setProfile(mProfiles[index - PREDEFINED_PROFILES_NR])
             }
         }
+    }
+
+    private fun addIconToString(string : String) : SpannableString {
+        val minusValue = 20
+        val newString = "a " + string.substring(0, string.indexOf("/")+1)+
+                "b " + string.substring(string.indexOf("/")+1, string.length)
+        val spannableString = SpannableString(newString)
+        val icBreak = ResourcesCompat.getDrawable(resources, R.drawable.ic_break, null)
+        val icWork = ResourcesCompat.getDrawable(resources, R.drawable.ic_clock, null)
+        icBreak?.setBounds(0, 5, icBreak.intrinsicWidth -15,
+            icBreak.intrinsicHeight -minusValue)
+        icWork?.setBounds(0, 5, icWork.intrinsicWidth-15,
+            icWork.intrinsicHeight -minusValue)
+        val spanBreak = icBreak?.let { ImageSpan(it, ImageSpan.ALIGN_CENTER) }
+        val spanWork = icWork?.let { ImageSpan(it,ImageSpan.ALIGN_CENTER) }
+        spannableString.setSpan(
+            spanBreak,
+            spannableString.toString().indexOf("b"),
+            spannableString.toString().indexOf("b") + 1,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        spannableString.setSpan(
+            spanWork,
+            0,
+            1,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        return spannableString
+    }
+
+    private fun removeIconToString(string: SpannableString) : String {
+        return string.substring(2,string.indexOf("/")+1) +
+                string.substring(string.indexOf("/")+3,string.length)
     }
 
     companion object {

@@ -11,12 +11,12 @@
  * either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-package com.apps.adrcotfas.goodtime.viewmodel
+package com.apps.daniel.poro.viewmodel
 
 import androidx.lifecycle.*
-import com.apps.adrcotfas.goodtime.BillingRepository
-import com.apps.adrcotfas.goodtime.BillingRepository.Companion.SKU_PREMIUM
-import com.apps.adrcotfas.goodtime.billing.BillingDataSource
+import com.apps.daniel.poro.BillingRepository
+import com.apps.daniel.poro.BillingRepository.Companion.SKU_PREMIUM
+import com.apps.daniel.poro.billing.BillingDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

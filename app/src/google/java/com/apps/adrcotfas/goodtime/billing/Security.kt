@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apps.adrcotfas.goodtime.billing
+package com.apps.daniel.poro.billing
 
 import android.text.TextUtils
 import android.util.Base64

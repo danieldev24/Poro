@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apps.adrcotfas.goodtime.ui.upgrade_dialog
+package com.apps.daniel.poro.ui.upgrade_dialog
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -22,8 +22,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.adrcotfas.goodtime.R
-import com.apps.adrcotfas.goodtime.util.ThemeHelper
+import com.apps.daniel.poro.R
+import com.apps.daniel.poro.util.ThemeHelper
 
 class ExtraFeaturesAdapter(
         private val context: Context,

@@ -10,17 +10,17 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
  * either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
-package com.apps.adrcotfas.goodtime.ui
+package com.apps.daniel.poro.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import com.apps.adrcotfas.goodtime.R
-import com.apps.adrcotfas.goodtime.billing.BillingDataSource
-import com.apps.adrcotfas.goodtime.settings.PreferenceHelper
-import com.apps.adrcotfas.goodtime.viewmodel.MainBillingViewModel
+import com.apps.daniel.poro.R
+import com.apps.daniel.poro.billing.BillingDataSource
+import com.apps.daniel.poro.settings.PreferenceHelper
+import com.apps.daniel.poro.viewmodel.MainBillingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

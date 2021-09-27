@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.apps.adrcotfas.goodtime.billing
+package com.apps.daniel.poro.billing
 
 import android.app.Activity
 import android.content.Context
