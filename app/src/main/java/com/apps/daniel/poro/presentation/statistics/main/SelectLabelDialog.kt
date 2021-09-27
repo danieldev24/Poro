@@ -35,6 +35,8 @@ import android.text.SpannableString
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import com.apps.daniel.poro.R
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class SelectLabelDialog : DialogFragment() {
@@ -228,9 +230,6 @@ class SelectLabelDialog : DialogFragment() {
 
     private fun addIconToString(string : String) : SpannableString {
         val minusValue = 20
-        val newString = "a " + string.substring(0, string.indexOf("/")+1)+
-                "b " + string.substring(string.indexOf("/")+1, string.length)
-        val spannableString = SpannableString(newString)
         val icBreak = ResourcesCompat.getDrawable(resources, R.drawable.ic_break, null)
         val icWork = ResourcesCompat.getDrawable(resources, R.drawable.ic_clock, null)
         icBreak?.setBounds(0, 5, icBreak.intrinsicWidth -15,
@@ -239,24 +238,39 @@ class SelectLabelDialog : DialogFragment() {
             icWork.intrinsicHeight -minusValue)
         val spanBreak = icBreak?.let { ImageSpan(it, ImageSpan.ALIGN_CENTER) }
         val spanWork = icWork?.let { ImageSpan(it,ImageSpan.ALIGN_CENTER) }
-        spannableString.setSpan(
-            spanBreak,
-            spannableString.toString().indexOf("b"),
-            spannableString.toString().indexOf("b") + 1,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        spannableString.setSpan(
-            spanWork,
-            0,
-            1,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        return spannableString
+        val p: Pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE)
+        val m: Matcher = p.matcher(string)
+        val b: Boolean = m.find()
+        if (b){
+            val newString = "a " + string.substring(0, string.indexOf("/")+1)+
+                    "b " + string.substring(string.indexOf("/")+1, string.length)
+            val spannableString = SpannableString(newString)
+            spannableString.setSpan(
+                spanBreak,
+                spannableString.toString().indexOf("b"),
+                spannableString.toString().indexOf("b") + 1,
+                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            )
+            spannableString.setSpan(
+                spanWork,
+                0,
+                1,
+                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            )
+            return spannableString
+        }else
+            return SpannableString(string)
     }
 
     private fun removeIconToString(string: SpannableString) : String {
-        return string.substring(2,string.indexOf("/")+1) +
-                string.substring(string.indexOf("/")+3,string.length)
+        val p: Pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE)
+        val m: Matcher = p.matcher(string)
+        val b: Boolean = m.find()
+        return if (b)
+            string.substring(2,string.indexOf("/")+1) +
+                    string.substring(string.indexOf("/")+3,string.length)
+        else
+            string.toString()
     }
 
     companion object {
