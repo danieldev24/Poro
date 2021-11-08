@@ -14,7 +14,7 @@ Its build-in Android Kotlin
 * Run in background
 
 ## In App
-<img src="resources/video.mp4" height="300em"/>
+<img src="resources/video.gif" height="300em"/>
 
 ## Download
 You can [download](resources/poro.apk) the latest installable version of Crypto Currency for Android.
