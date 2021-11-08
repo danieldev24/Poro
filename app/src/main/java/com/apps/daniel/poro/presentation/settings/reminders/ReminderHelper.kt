@@ -41,11 +41,11 @@ class ReminderHelper@Inject constructor(
     private fun initChannelIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            val channel = notificationManager.getNotificationChannel(GOODTIME_REMINDER_CHANNEL_ID)
+            val channel = notificationManager.getNotificationChannel(PORO_REMINDER_CHANNEL_ID)
             if (channel == null) {
                 Log.d(TAG, "initChannel")
                 val c = NotificationChannel(
-                    GOODTIME_REMINDER_CHANNEL_ID,
+                    PORO_REMINDER_CHANNEL_ID,
                     context.getString(R.string.reminder_notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
@@ -157,8 +157,8 @@ class ReminderHelper@Inject constructor(
 
     companion object {
         private const val TAG = "ReminderHelper"
-        private const val GOODTIME_REMINDER_CHANNEL_ID = "goodtime_reminder_notification"
-        const val REMINDER_ACTION = "goodtime.reminder_action"
+        private const val PORO_REMINDER_CHANNEL_ID = "poro_reminder_notification"
+        const val REMINDER_ACTION = "poro.reminder_action"
         const val REMINDER_REQUEST_CODE = 11
         private const val REMINDER_NOTIFICATION_ID = 99
 
@@ -170,8 +170,8 @@ class ReminderHelper@Inject constructor(
                 openMainIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-            val builder = NotificationCompat.Builder(context, GOODTIME_REMINDER_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_status_goodtime)
+            val builder = NotificationCompat.Builder(context, PORO_REMINDER_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_time_duration)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContentIntent(pendingIntent)

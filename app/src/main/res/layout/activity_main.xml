@@ -79,13 +79,24 @@
             android:gravity="center"
             android:maxLines="1"
             android:onClick="onStartButtonClick"
-            app:autoSizeMaxTextSize="85sp"
+            app:autoSizeMaxTextSize="60sp"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.25" />
+
+        <ImageView
+            android:id="@+id/circle_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="280dp"
+            android:src="@drawable/ic_circle_white"
+            app:layout_constraintBottom_toBottomOf="@+id/timeLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/timeLabel"
+            android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/planet"

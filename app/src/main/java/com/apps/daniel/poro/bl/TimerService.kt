@@ -157,7 +157,7 @@ class TimerService : LifecycleService() {
         }
         notificationHelper.clearNotification()
         startForeground(
-            NotificationHelper.GOODTIME_NOTIFICATION_ID, notificationHelper.getInProgressBuilder(
+            NotificationHelper.PORO_NOTIFICATION_ID, notificationHelper.getInProgressBuilder(
                 currentSessionManager.currentSession
             ).build()
         )
@@ -166,7 +166,7 @@ class TimerService : LifecycleService() {
     private fun onToggleEvent() {
         currentSessionManager.toggleTimer()
         startForeground(
-            NotificationHelper.GOODTIME_NOTIFICATION_ID, notificationHelper.getInProgressBuilder(
+            NotificationHelper.PORO_NOTIFICATION_ID, notificationHelper.getInProgressBuilder(
                 currentSessionManager.currentSession
             ).build()
         )
@@ -237,7 +237,7 @@ class TimerService : LifecycleService() {
         preferenceHelper.increment60SecondsCounter()
         if (currentSessionManager.currentSession.timerState.value == TimerState.INACTIVE) {
             startForeground(
-                NotificationHelper.GOODTIME_NOTIFICATION_ID,
+                NotificationHelper.PORO_NOTIFICATION_ID,
                 notificationHelper.getInProgressBuilder(
                     currentSessionManager.currentSession
                 ).build()

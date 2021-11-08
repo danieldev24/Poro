@@ -21,7 +21,6 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import com.apps.daniel.poro.BuildConfig
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -50,34 +49,7 @@ class AboutActivity : MaterialAboutActivity() {
                 false
             )
         )
-        builder1.addItem(
-            MaterialAboutActionItem.Builder()
-                .text(getString(R.string.about_source_code))
-                .icon(
-                    IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_github_circle)
-                        .color(ContextCompat.getColor(c, colorIcon))
-                        .sizeDp(18)
-                )
-                .setOnClickAction(
-                    ConvenienceBuilder.createWebsiteOnClickAction(
-                        c, Uri.parse(getString(R.string.app_url))
-                    )
-                )
-                .build()
-        )
-        builder1.addItem(MaterialAboutActionItem.Builder()
-            .text(getString(R.string.about_open_source_licences))
-            .icon(
-                IconicsDrawable(c)
-                    .icon(CommunityMaterial.Icon.cmd_book)
-                    .color(ContextCompat.getColor(c, colorIcon))
-                    .sizeDp(18)
-            )
-            .setOnClickAction {
-                startActivity(Intent(this, OssLicensesMenuActivity::class.java))
-            }
-            .build())
+
         builder1.addItem(MaterialAboutActionItem.Builder()
             .text(getString(R.string.about_app_intro))
             .icon(
@@ -117,21 +89,7 @@ class AboutActivity : MaterialAboutActivity() {
             )
             .setOnClickAction { openFeedback() }.build()
         )
-        builder2.addItem(MaterialAboutActionItem.Builder()
-            .text(getString(R.string.about_translate))
-            .icon(
-                IconicsDrawable(c)
-                    .icon(CommunityMaterial.Icon2.cmd_web)
-                    .color(ContextCompat.getColor(c, colorIcon))
-                    .sizeDp(18)
-            )
-            .setOnClickAction {
-                val url = getString(R.string.app_translation_url)
-                val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse(url)
-                startActivity(i)
-            }.build()
-        )
+
         builder2.addItem(
             ConvenienceBuilder.createRateActionItem(
                 c,
@@ -153,7 +111,8 @@ class AboutActivity : MaterialAboutActivity() {
                     .sizeDp(18)
             )
             .setOnClickAction {
-                val url = "https://play.google.com/store/apps/developer?id=Goodtime"
+                //TODO need to add url
+                val url = ""
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse(url)
                 startActivity(i)
@@ -173,8 +132,8 @@ class AboutActivity : MaterialAboutActivity() {
     private fun openFeedback() {
         val email = Intent(Intent.ACTION_SENDTO)
         email.data = Uri.Builder().scheme("mailto").build()
-        email.putExtra(Intent.EXTRA_EMAIL, arrayOf("goodtime-app@googlegroups.com"))
-        email.putExtra(Intent.EXTRA_SUBJECT, "[Goodtime] Feedback")
+        email.putExtra(Intent.EXTRA_EMAIL, arrayOf(""))
+        email.putExtra(Intent.EXTRA_SUBJECT, "[Poro] Feedback")
         email.putExtra(
             Intent.EXTRA_TEXT, """
      

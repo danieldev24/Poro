@@ -105,8 +105,8 @@
     <string name="settings_grant_permission">Nhấn vào để chọn cho phép ứng dụng</string>
     <string name="delete_selected_entries">Xóa mục đã chọn?</string>
     <string name="empty_state_no_items">Không có dữ liệu</string>
-    <string name="notification_channel_name">Goodtime thông báo</string>
-    <string name="reminder_notification_channel_name">"Kênh thông báo của ứng dụng Goodtime"</string>
+    <string name="notification_channel_name">" Thông báo từ Poro"</string>
+    <string name="reminder_notification_channel_name">Kênh thông báo của ứng dụng Poro</string>
     <string name="reminder_title">"Nhắc nhở mỗi ngày"</string>
     <string name="reminder_text">"Đã đến lúc cần phải làm việc năng suất hơn!"</string>
     <string name="settings">Cài đặt</string>
@@ -164,4 +164,5 @@
     <string name="pref_one_minute_left_notification_summary">Báo cho biết 1 phút trước khi thời gian kết thúc</string>
     <string name="donate_message">Đóbg góp để ủng hộ nguồn mở và phần mềm không quảng cáo!</string>
     <string name="donate">Ủng hộ tác giả</string>
+    <string name="reminder_time">Giờ báo thức</string>
 </resources>

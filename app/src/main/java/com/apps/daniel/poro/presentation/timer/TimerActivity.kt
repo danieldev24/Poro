@@ -9,7 +9,6 @@ import javax.inject.Inject
 import com.apps.daniel.poro.presentation.settings.PreferenceHelper
 import com.apps.daniel.poro.bl.CurrentSessionManager
 import android.widget.TextView
-import com.google.android.material.chip.Chip
 import com.apps.daniel.poro.presentation.statistics.SessionViewModel
 import com.apps.daniel.poro.bl.SessionType
 import com.apps.daniel.poro.bl.TimerState
@@ -21,7 +20,6 @@ import org.greenrobot.eventbus.EventBus
 import androidx.databinding.DataBindingUtil
 import com.apps.daniel.poro.R
 import com.kobakei.ratethisapp.RateThisApp
-import android.view.animation.Animation
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import android.annotation.SuppressLint
@@ -45,12 +43,10 @@ import android.net.Uri
 import android.provider.Settings
 import android.util.Log
 import android.view.*
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
+import android.view.animation.*
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -66,12 +62,6 @@ import com.apps.daniel.poro.presentation.intro.MainIntroActivity
 import com.apps.daniel.poro.ui.ActivityWithBilling
 import com.apps.daniel.poro.util.*
 import com.apps.daniel.poro.util.Constants.ClearNotificationEvent
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
@@ -125,6 +115,7 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
             } else {
                 startService(skipIntent)
             }
+            binding.circleRotate.startAnimation(AnimationUtils.loadAnimation(this,R.anim.rotate))
         }
     }
 
@@ -156,7 +147,6 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
             // If the condition is satisfied, "Rate this app" dialog will be shown
             RateThisApp.showRateDialogIfNeeded(this)
         }
-        Glide.with(this).asGif().load(R.drawable.star).into( binding.planet)
     }
 
     override fun showSnackBar(@StringRes resourceId: Int) {
@@ -266,6 +256,7 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
                     )
                     if (currentSession.timerState.value === TimerState.PAUSED) {
                         lifecycleScope.launch {
+                            circleRotate.clearAnimation()
                             delay(300)
                             timeLabel.startAnimation(
                                 AnimationUtils.loadAnimation(applicationContext, R.anim.blink))
@@ -533,15 +524,29 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
     private fun start(sessionType: SessionType) {
         var startIntent = Intent()
         when (currentSession.timerState.value) {
-            TimerState.INACTIVE -> startIntent = IntentWithAction(
-                this@TimerActivity, TimerService::class.java,
-                Constants.ACTION.START, sessionType
-            )
-            TimerState.ACTIVE, TimerState.PAUSED -> startIntent = IntentWithAction(
-                this@TimerActivity,
-                TimerService::class.java,
-                Constants.ACTION.TOGGLE
-            )
+            TimerState.INACTIVE -> {
+                startIntent = IntentWithAction(
+                    this@TimerActivity, TimerService::class.java,
+                    Constants.ACTION.START, sessionType
+                )
+                binding.circleRotate.startAnimation(AnimationUtils.loadAnimation(this,R.anim.rotate))
+            }
+            TimerState.ACTIVE ->{
+                startIntent = IntentWithAction(
+                    this@TimerActivity,
+                    TimerService::class.java,
+                    Constants.ACTION.TOGGLE
+                )
+                binding.circleRotate.clearAnimation()
+            }
+            TimerState.PAUSED -> {
+                startIntent = IntentWithAction(
+                    this@TimerActivity,
+                    TimerService::class.java,
+                    Constants.ACTION.TOGGLE
+                )
+                binding.circleRotate.startAnimation(AnimationUtils.loadAnimation(this,R.anim.rotate))
+            }
             else -> Log.wtf(TAG, "Invalid timer state.")
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -561,6 +566,7 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
         }
         binding.whiteCover.visibility = View.GONE
         binding.whiteCover.clearAnimation()
+        binding.circleRotate.clearAnimation()
     }
 
     private fun add60Seconds() {
@@ -689,10 +695,12 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
     private fun setTimeLabelColor() {
         val label = preferenceHelper.currentSessionLabel
         if (currentSessionType === SessionType.BREAK || currentSessionType === SessionType.LONG_BREAK) {
+            binding.circleRotate.setColorFilter(ThemeHelper.getColor(this, ThemeHelper.COLOR_INDEX_BREAK))
             binding.timeLabel.setTextColor(ThemeHelper.getColor(this, ThemeHelper.COLOR_INDEX_BREAK))
             return
         }
         if (!isInvalidLabel(label)) {
+            binding.circleRotate.setColorFilter(ThemeHelper.getColor(this, label.colorId))
             binding.timeLabel.setTextColor(ThemeHelper.getColor(this, label.colorId))
         } else {
             binding.timeLabel.setTextColor(
@@ -701,6 +709,10 @@ class TimerActivity : ActivityWithBilling(), OnSharedPreferenceChangeListener,
                     ThemeHelper.COLOR_INDEX_UNLABELED
                 )
             )
+            binding.circleRotate.setColorFilter(ThemeHelper.getColor(
+                this,
+                ThemeHelper.COLOR_INDEX_UNLABELED
+            ))
         }
     }
 

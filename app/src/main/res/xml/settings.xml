@@ -33,7 +33,7 @@
             app:fragment="com.apps.daniel.poro.presentation.settings.DurationsSettingsFragment"
             android:title="@string/pref_timer_duration"
             android:summary="@string/timer_durations"
-            android:icon="@drawable/ic_status_goodtime"/>
+            android:icon="@drawable/ic_time_duration"/>
 
         <ListPreference
             android:dialogTitle="@string/pref_timer_style"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        android:key="pref_timer_duration"
+        app:fragment="com.apps.daniel.poro.presentation.settings.DurationsSettingsFragment"
+        android:title="@string/pref_timer_duration"
+        android:summary="@string/timer_durations"
+        android:icon="@drawable/ic_time_duration"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="pref_fullscreen"
+        android:title="@string/pref_fullscreen"
+        app:iconSpaceReserved="false"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:persistent="true"
+        android:key="pref_amoled"
+        android:title="@string/pref_amoled"
+        app:iconSpaceReserved="false"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_enable_ringtone"
+        android:title="@string/pref_enable_ringtone"
+        android:icon="@drawable/ic_notifications"/>
+
+    <ListPreference
+        android:key="pref_vibration_type"
+        android:defaultValue="@string/pref_vibration_values_strong"
+        android:entryValues="@array/pref_vibration_values"
+        android:entries="@array/pref_vibration_types"
+        android:title="@string/pref_vibrate"
+        android:summary="%s"
+        android:icon="@drawable/ic_vibration"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_flashing_notification"
+        android:title="@string/pref_flashing_notification"
+        android:summary="@string/pref_flashing_notification_summary"
+        android:icon="@drawable/ic_flash"/>
+
+</PreferenceScreen>

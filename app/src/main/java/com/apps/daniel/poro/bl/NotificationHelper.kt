@@ -26,13 +26,13 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
     fun notifyFinished(sessionType: SessionType) {
         Log.v(TAG, "notifyFinished")
         clearNotification()
-        manager.notify(GOODTIME_NOTIFICATION_ID, getFinishedSessionBuilder(sessionType).build())
+        manager.notify(PORO_NOTIFICATION_ID, getFinishedSessionBuilder(sessionType).build())
     }
 
     fun updateNotificationProgress(currentSession: CurrentSession) {
         Log.v(TAG, "updateNotificationProgress")
         manager.notify(
-            GOODTIME_NOTIFICATION_ID,
+            PORO_NOTIFICATION_ID,
             getInProgressBuilder(currentSession)
                 .setOnlyAlertOnce(true)
                 .setContentText(buildProgressText(currentSession.duration.value))
@@ -55,7 +55,7 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
     @TargetApi(Build.VERSION_CODES.O)
     private fun initChannels() {
         val channelInProgress = NotificationChannel(
-            GOODTIME_NOTIFICATION, getString(R.string.notification_channel_name),
+            PORO_NOTIFICATION, getString(R.string.notification_channel_name),
             NotificationManager.IMPORTANCE_LOW
         )
         channelInProgress.setBypassDnd(true)
@@ -75,7 +75,7 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
         Log.v(TAG, "createNotification")
         builder.mActions.clear()
         if (currentSession.sessionType.value == SessionType.WORK) {
-            builder.setSmallIcon(R.drawable.ic_status_goodtime)
+            builder.setSmallIcon(R.drawable.ic_time_duration)
             if (currentSession.timerState.value == TimerState.PAUSED) {
                 builder.addAction(buildStopAction(this))
                     .addAction(buildResumeAction(this))
@@ -97,7 +97,7 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
     }
 
     private fun getFinishedSessionBuilder(sessionType: SessionType): NotificationCompat.Builder {
-        val builder = NotificationCompat.Builder(this, GOODTIME_NOTIFICATION)
+        val builder = NotificationCompat.Builder(this, PORO_NOTIFICATION)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -109,7 +109,7 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
         if (sessionType == SessionType.WORK) {
             builder.setContentTitle(getString(R.string.action_finished_session))
                 .setContentText(getString(R.string.action_continue))
-                .setSmallIcon(R.drawable.ic_status_goodtime)
+                .setSmallIcon(R.drawable.ic_time_duration)
                 .setLights(Color.GREEN, 500, 2000)
                 .addAction(buildStartBreakAction(this))
                 .addAction(buildSkipBreakAction(this))
@@ -190,8 +190,8 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
 
     companion object {
         private val TAG = NotificationHelper::class.java.simpleName
-        private const val GOODTIME_NOTIFICATION = "goodtime.notification"
-        const val GOODTIME_NOTIFICATION_ID = 42
+        private const val PORO_NOTIFICATION = "poro.notification"
+        const val PORO_NOTIFICATION_ID = 42
         private const val START_WORK_ID = 33
         private const val SKIP_BREAK_ID = 34
         private const val START_BREAK_ID = 35
@@ -245,8 +245,8 @@ class NotificationHelper @Inject constructor(context: Context) : ContextWrapper(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             initChannels()
         }
-        builder = NotificationCompat.Builder(this, GOODTIME_NOTIFICATION)
-            .setSmallIcon(R.drawable.ic_status_goodtime)
+        builder = NotificationCompat.Builder(this, PORO_NOTIFICATION)
+            .setSmallIcon(R.drawable.ic_time_duration)
             .setCategory(NotificationCompat.CATEGORY_PROGRESS)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setContentIntent(createActivityIntent())

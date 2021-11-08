@@ -32,11 +32,11 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
 
     companion object {
-        private const val TAG = "GoodtimeDatabase"
+        private const val TAG = "PoroDatabase"
         private val dbToInstanceId = ConcurrentHashMap<Int, String>()
         private val threadToInstanceId = ConcurrentHashMap<Long, String>()
 
-        const val DATABASE_NAME = "goodtime-db"
+        const val DATABASE_NAME = "poro-db"
         private val LOCK = Any()
         private var INSTANCE: AppDatabase? = null
         private val MIGRATION_4_5: Migration = object : Migration(4, 5) {

@@ -78,7 +78,7 @@ class BackupOperations {
                 val destinationPath = File(context.filesDir, "tmp")
                 val destinationFile = File(
                     destinationPath,
-                    "Goodtime-Backup-" + StringUtils.formatDateAndTime(System.currentTimeMillis())
+                    "Poro-Backup-" + StringUtils.formatDateAndTime(System.currentTimeMillis())
                 )
                 destinationFile.deleteOnExit()
                 if (file.exists()) {
@@ -123,7 +123,7 @@ class BackupOperations {
                 try {
                     val destinationPath = File(context.filesDir, "tmp")
                     val output = File(
-                        destinationPath, "Goodtime-CSV-" + StringUtils.formatDateAndTime(
+                        destinationPath, "Poro-CSV-" + StringUtils.formatDateAndTime(
                             System.currentTimeMillis()
                         )
                     )
